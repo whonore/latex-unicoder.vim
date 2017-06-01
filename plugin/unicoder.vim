@@ -14,4 +14,5 @@ endif
 if !exists("g:unicoder_no_map")
     " we _don't_ want noremap here -- we _need_ <Plug>Unicoder to get recursed
     map <C-l> <Plug>Unicoder
+    imap <C-l> <Plug>Unicoder
 endif
