@@ -2515,13 +2515,11 @@ function! unicoder#lookup_char(char)
   endif
 endfunction
 
-
 function! unicoder#transform_string(code)
 
   return substitute(a:code, '\([\_\^\\][^\\\_\^ \t\n\r]\+\)', '\=unicoder#lookup_char(submatch(1))', 'g')
 
 endfunction
-
 
 function! unicoder#start(insert)
   let code = input('Enter symbol code (add "\" if required) : ', '', 'customlist,unicoder#start_complete')
@@ -2536,8 +2534,15 @@ function! unicoder#start(insert)
   execute 'normal! ' . how . s
 
   if a:insert > 0
-    startinsert
+    let l:oldcol = col('.')
     normal! l
+    let l:newcol = col('.')
+
+    if l:oldcol == l:newcol
+      startinsert!
+    else
+      startinsert
+    endif
   endif
 endfunction
 
