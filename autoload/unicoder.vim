@@ -2583,7 +2583,7 @@ function! unicoder#transform_string(code)
     let [l:match, l:len] = unicoder#match_longest(l:code)
 
     let l:unicode .= l:match
-    let l:code = l:code[l:len:]
+    let l:code = l:code[l:len :]
   endwhile
 
   return l:unicode
